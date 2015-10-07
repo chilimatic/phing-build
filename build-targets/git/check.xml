@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="git.check" default="check" basedir="." description="This is the automatic build file for the social network.">
+    <property name="pathToGitDir" value=".git" />
+
+    <target name="check">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${pathToGitDir}' type='dir' />
+            <then>
+                <echo message="this is a git repository" />
+            </then>
+            <else>
+                <echo message="this is not a git repository! Panic! ;P" />
+                <fail />
+            </else>
+        </if>
+    </target>
+
+</project>

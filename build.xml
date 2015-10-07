@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project name="chilimatic-build-example" default="build" basedir="." description="This is a Phing build target collection so they are easier to compose.">
+    <!-- import the different tasks -->
+    <import file="build/git/update.xml" />
+    <import file="build/php/composer.xml" />
+    <import file="build/node/npm.xml" />
+    <import file="build/node/bower.xml" />
+    <import file="build/node/unittest.xml" />
+
+    <!-- property list -->
+    <property value="" name="outputValue" />
+
+    <!-- prepares the project -->
+    <target name="prepare" depends="composer.check, node.check">
+        <!-- check if npm exists otherwise fail -->
+        <phingcall target="node.npm.install.routine" />
+        <phingcall target="composer.install.routine" />
+    </target>
+
+    <!-- unit tests triggered -->
+    <target name="test">
+        <phpunit haltonerror="true" haltonfailure="true">
+            <batchtest>
+                <fileset dir="test">
+                    <include name="*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+    <!-- build the package -->
+    <target name="build" depends="test,prepare">
+        <phingcall target="node.bower.install.routine" />
+    </target>
+
+    <target name="clean">
+        <delete dir="vendor" />
+        <delete dir="node_modules" />
+    </target>
+</project>

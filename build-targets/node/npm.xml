@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project name="npm-task" default="node.check" basedir="." description="This is a taskfile for composer tasks">
+    <property name="pathToModules" value="node_modules" />
+
+    <!-- check if node is available otherwise fail -->
+    <target name="node.check">
+        <exec escape="true" command="which npm" outputProperty="outputValue"/>
+        <if>
+            <not>
+                <equals arg1="${outputValue}" arg2="" />
+            </not>
+            <then>
+                <echo message="npm detected" />
+            </then>
+            <else>
+                <echo message="npm is missing! please install or contact your administrator" />
+                <fail />
+            </else>
+        </if>
+    </target>
+
+            <!-- trigger node install -->
+    <target name="node.npm.project.install">
+        <echo message="NPM already installed your modules, trying to update" />
+        <exec command="npm update" />
+    </target>
+
+            <!-- trigger npm update -->
+    <target name="node.npm.project.update">
+        <echo message="no node_modules found, execute npm install" />
+        <exec command="npm install" />
+    </target>
+
+            <!-- install or update node modules -->
+    <target name="node.npm.install.routine">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${pathToModules}' type='dir' />
+            <then>
+                <phingcall target="node.npm.project.update" />
+            </then>
+            <else>
+                <phingcall target="node.npm.project.install" />
+            </else>
+        </if>
+    </target>
+</project>

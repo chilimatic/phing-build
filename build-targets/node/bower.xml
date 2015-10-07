@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="npm-task" default="bower.check" basedir="." description="This is a taskfile for composer tasks">
+    <!-- todo think about dynamic mapping via task plugin -->
+    <property name="pathToBowerBinary" value="node_modules/.bin/bower" />
+    <property name="pathToVendor" value="public/vendor" />
+
+    <!-- check if node is available otherwise fail -->
+    <target name="bower.check">
+        <available property="outputValue" file='${pathToBowerBinary}' type='dir' />
+        <if>
+            <not>
+                <equals arg1="${outputValue}" arg2="" />
+            </not>
+            <then>
+                <echo message="bower detected" />
+                <phingcall target="node.bower.install.routine" />
+            </then>
+            <else>
+                <echo message="bower is missing! please check if npm install did run" />
+            </else>
+        </if>
+    </target>
+
+    <!-- trigger node install -->
+    <target name="node.bower.project.install">
+        <echo message="NPM already installed your modules, trying to update" />
+        <exec command="${pathToBowerBinary} update" />
+    </target>
+
+    <!-- trigger npm update -->
+    <target name="node.bower.project.update">
+        <echo message="no node_modules found, execute npm install" />
+        <exec command="${pathToBowerBinary} install" />
+    </target>
+
+    <!-- install or update node modules -->
+    <target name="node.bower.install.routine">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${pathToVendor}' type='dir' />
+            <then>
+                <phingcall target="node.bower.project.update" />
+            </then>
+            <else>
+                <phingcall target="node.bower.project.install" />
+            </else>
+        </if>
+    </target>
+</project>
