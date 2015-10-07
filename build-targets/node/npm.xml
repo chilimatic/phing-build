@@ -20,13 +20,13 @@
     </target>
 
             <!-- trigger node install -->
-    <target name="node.npm.project.install">
+    <target name="node.npm.project.update">
         <echo message="NPM already installed your modules, trying to update" />
         <exec command="npm update" />
     </target>
 
             <!-- trigger npm update -->
-    <target name="node.npm.project.update">
+    <target name="node.npm.project.install">
         <echo message="no node_modules found, execute npm install" />
         <exec command="npm install" />
     </target>
