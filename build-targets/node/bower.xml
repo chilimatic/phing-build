@@ -22,14 +22,14 @@
     </target>
 
     <!-- trigger node install -->
-    <target name="node.bower.project.install">
-        <echo message="NPM already installed your modules, trying to update" />
+    <target name="node.bower.project.update">
+        <echo message="Bower is already installed trying to update" />
         <exec command="${pathToBowerBinary} update" />
     </target>
 
     <!-- trigger npm update -->
-    <target name="node.bower.project.update">
-        <echo message="no node_modules found, execute npm install" />
+    <target name="node.bower.project.install">
+        <echo message="no bower target directory found, triggering bower install" />
         <exec command="${pathToBowerBinary} install" />
     </target>
 

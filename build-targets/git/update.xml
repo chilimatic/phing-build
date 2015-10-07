@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<project name="git.pull" default="git.pull" basedir="." description="This is the automatic build file for the social network.">
-    <import file="check.xml" />
-
-    <target name="git.pull">
-
-    </target>
-
-</project>

@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
-<project name="git.check" default="check" basedir="." description="This is the automatic build file for the social network.">
+<project name="check" default="git.check" basedir="." description="This is the automatic build file for the social network.">
+    <!-- properties -->
     <property name="pathToGitDir" value=".git" />
 
-    <target name="check">
+    <!-- checks if its a git repository -->
+    <target name="git.check">
         <property name="outputValue" value="" override="yes" />
         <if>
             <available property="outputValue" file='${pathToGitDir}' type='dir' />
