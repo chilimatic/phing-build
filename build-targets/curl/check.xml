@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project name="curl" default="curl.check" basedir="." description="This is a taskfile for composer tasks">
+
+    <!-- if composer is not downloaded we need to check if curl is available other wise fail -->
+    <target name="curl.check">
+        <property name="outputValue" value="" override="yes" />
+        <exec command="which curl" outputProperty="outputValue" />
+        <if>
+            <not>
+                <equals arg1="${outputValue}" arg2="" />
+            </not>
+            <then>
+                <echo message="curl detected" />
+            </then>
+            <else>
+                <echo message="curl missing please contact your administrator" />
+                <fail />
+            </else>
+        </if>
+    </target>
+</project>

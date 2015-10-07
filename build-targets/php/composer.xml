@@ -1,81 +1,59 @@
 <?xml version="1.0"?>
-<project name="composer-task" default="composer.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="php.composer" default="php.composer.check" basedir="." description="This is a taskfile for composer tasks">
+    <import file="phing-build/build-targets/curl/check.xml" />
     <property name="pathToVendor" value="vendor" />
 
     <!-- we need to check if composer already has been downloaded if so update it -->
-    <target name="composer.check" depends="curl.check">
+    <target name="php.composer.check" depends="curl.check">
         <property name="outputValue" value="" override="yes" />
         <if>
             <available property="outputValue" file='composer.phar' type='file' />
             <then>
-                <phingcall target="composer.self.update" />
+                <phingcall target="php.composer.self.update" />
             </then>
             <else>
-                <phingcall target="composer.self.install" />
+                <phingcall target="php.composer.self.install" />
             </else>
         </if>
     </target>
 
     <!-- check if composer packages have been installed otherwise install them -->
-    <target name="composer.install.routine">
+    <target name="php.composer.install.routine">
     <property name="outputValue" value="" override="yes" />
     <if>
         <available property="outputValue" file='${pathToVendor}' type='dir' />
         <then>
-            <phingcall target="composer.project.update" />
+            <phingcall target="php.composer.project.update" />
         </then>
         <else>
-            <phingcall target="composer.project.install" />
+            <phingcall target="php.composer.project.install" />
         </else>
     </if>
     </target>
 
     <!-- composer install triggered-->
-    <target name="composer.project.install">
+    <target name="php.composer.project.install">
         <echo message="composer install is triggered" />
         <exec command="php composer.phar install" />
     </target>
 
     <!-- composer update triggered-->
-    <target name="composer.project.update">
+    <target name="php.composer.project.update">
         <echo message="composer install is triggered" />
         <exec command="php composer.phar install" />
     </target>
 
 
     <!-- install composer -->
-    <target name="composer.self.install">
+    <target name="php.composer.self.install">
         <echo message="composer was not detected attempting download" />
-        <exec command="curl -sS https://getcomposer.org/installer | php" />
+        <exec command="curl -sS https://get.composer.org/installer | php" />
     </target>
 
     <!-- update composer -->
-    <target name="composer.self.update">
+    <target name="php.composer.self.update">
         <echo message="composer was detected" />
         <exec command="php composer.phar self-update" />
     </target>
 
-    <target name="composer.download">
-        <echo message="composer was not detected attempting download" />
-        <exec command="curl -sS https://getcomposer.org/installer | php" />
-    </target>
-
-
-    <!-- if composer is not downloaded we need to check if curl is available other wise fail -->
-    <target name="curl.check">
-        <property name="outputValue" value="" override="yes" />
-        <exec command="which curl" outputProperty="outputValue" />
-        <if>
-            <not>
-                <equals arg1="${outputValue}" arg2="" />
-            </not>
-            <then>
-                <echo message="curl detected" />
-            </then>
-            <else>
-                <echo message="curl missing please contact your administrator" />
-                <fail />
-            </else>
-        </if>
-    </target>
 </project>

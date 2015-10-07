@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<project name="npm-task" default="node.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="node.npm" default="node.npm.check" basedir="." description="This is a taskfile for composer tasks">
     <property name="pathToModules" value="node_modules" />
 
     <!-- check if node is available otherwise fail -->
-    <target name="node.check">
+    <target name="node.npm.check">
         <exec escape="true" command="which npm" outputProperty="outputValue"/>
         <if>
             <not>
