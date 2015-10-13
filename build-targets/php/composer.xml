@@ -39,8 +39,8 @@
 
     <!-- composer update triggered-->
     <target name="php.composer.project.update">
-        <echo message="composer install is triggered" />
-        <exec command="php composer.phar install" />
+        <echo message="composer update is triggered" />
+        <exec command="php composer.phar update" />
     </target>
 
 
