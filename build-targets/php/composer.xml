@@ -47,7 +47,7 @@
     <!-- install composer -->
     <target name="php.composer.self.install">
         <echo message="composer was not detected attempting download" />
-        <exec command="curl -sS https://get.composer.org/installer | php" />
+        <exec command="curl -sS https://getcomposer.org/installer | php" />
     </target>
 
     <!-- update composer -->
