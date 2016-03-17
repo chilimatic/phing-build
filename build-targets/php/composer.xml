@@ -2,12 +2,13 @@
 <project name="php.composer" default="php.composer.check" basedir="." description="This is a taskfile for composer tasks">
     <import file="phing-build/build-targets/curl/check.xml" />
     <property name="pathToVendor" value="vendor" />
+    <property name="executable" value="composer.phar"/>
 
     <!-- we need to check if composer already has been downloaded if so update it -->
     <target name="php.composer.check" depends="curl.check">
         <property name="outputValue" value="" override="yes" />
         <if>
-            <available property="outputValue" file='composer.phar' type='file' />
+            <available property="outputValue" file='${executable}' type='file' />
             <then>
                 <phingcall target="php.composer.self.update" />
             </then>

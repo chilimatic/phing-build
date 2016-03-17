@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="php.phinx" default="php.phinx.check" basedir="." description="This is a taskfile for composer tasks">
+    <property name="path" value="bin" />
+    <property name="executable" value="phinx" />
+
+
+    <target name="php.phinx.check">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${executable}' type='file' />
+            <then>
+                <phingcall target="php.phinx.migrate" />
+            </then>
+            <else>
+                <echo message="Phinx has not been found can not start migration!" />
+                <fail />
+            </else>
+        </if>
+    </target>
+
+    <target name="php.phinx.execute" depends="php.phinx.check">
+        <property name="command" value="" />
+        <exec command="${path}/${executable} ${command}" />
+    </target>
+
+    <target name="php.phinx.migrate">
+        <phingcall target="php.phinx.execute">
+            <property name="command" value="migrate" />
+        </phingcall>
+    </target>
+
+</project>

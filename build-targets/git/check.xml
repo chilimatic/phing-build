@@ -7,7 +7,7 @@
     <target name="git.check">
         <property name="outputValue" value="" override="yes" />
         <if>
-            <available property="outputValue" file='${pathToGitDir}' type='dir' />
+            <available property="outputValue" file='${pathToGitDir}' />
             <then>
                 <echo message="this is a git repository" />
             </then>
