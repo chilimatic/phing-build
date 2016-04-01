@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <project name="chilimatic-build-example" default="build" basedir="."
          description="This is a Phing build target collection so they are easier to compose.">
+    <property name="phingBuildTargetPath" value="./build-targets" />
     <!-- import the different tasks -->
-    <import file="build-targets/git/update.xml"/>
-    <import file="build-targets/php/composer.xml"/>
-    <import file="build-targets/node/npm.xml"/>
-    <import file="build-targets/node/bower.xml"/>
-    <import file="build-targets/node/unittest.xml"/>
+    <import file="${phingBuildTargetPath}/git/update.xml"/>
+    <import file="${phingBuildTargetPath}/php/composer.xml"/>
+    <import file="${phingBuildTargetPath}/node/npm.xml"/>
+    <import file="${phingBuildTargetPath}/node/bower.xml"/>
+    <import file="${phingBuildTargetPath}/node/unittest.xml"/>
 
     <!-- property list -->
     <property value="" name="outputValue"/>

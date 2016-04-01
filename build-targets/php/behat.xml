@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="php.behat" default="php.behat.check" basedir="." description="This is a taskfile for composer tasks">
+    <property name="behatExecutable" value="behat" />
+
+    <target name="php.behat.check">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${composerBinPath}/${behatExecutable}' type='file' />
+            <then>
+                <echo message="Behat has been installed" />
+            </then>
+            <else>
+                <echo message="Behat is not found at ${composerBinPath}/${behatExecutable}" />
+                <fail />
+            </else>
+        </if>
+    </target>
+
+    <target name="php.behat.execute" depends="php.behat.check">
+        <property name="command" value="" />
+        <exec passthru="true" command="${composerBinPath}/${behatExecutable} ${command}" />
+    </target>
+
+</project>

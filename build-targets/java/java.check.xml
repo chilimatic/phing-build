@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project name="java.check" default="java.exists" basedir="." description="This is a taskfile for composer tasks">
+    <property name="output" value="" />
+    <property name="javaCommand" value="java -version"/>
+
+    <target name="java.exists">
+        <exec outputProperty="output" command="${javaCommand}" />
+
+        <propertyregex property="output"
+                       override="true"
+                       subject="output"
+                       pattern=""
+                       match="$1"
+                       casesensitive="false"
+                       defaultvalue=""/>
+    </target>
+</project>

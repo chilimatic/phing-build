@@ -3,7 +3,6 @@
     <property name="path" value="bin" />
     <property name="executable" value="phinx" />
 
-
     <target name="php.phinx.check">
         <property name="outputValue" value="" override="yes" />
         <if>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project name="selenium.get" default="selenium.get.check" basedir="." description="This is a taskfile for composer tasks">
+    <import file="${phingBuildTargetPath}/curl/check.xml" />
+
+    <property name="seleniumPath" value="." />
+    <!-- http://selenium-release.storage.googleapis.com/index.html?path=${seleniumMajorVersionNo} for the listing-->
+    <property name="seleniumTargetUrl" value="http://selenium-release.storage.googleapis.com/${seleniumMajorVersionNo}" />
+    <property name="seleniumExecutable" value="selenium-server-standalone-${seleniumMajorVersionNo}.${seleniumMinorVersionNo}.${seleniumExtension}" />
+    <property name="seleniumExtension" value="jar" />
+    <property name="seleniumMajorVersionNo" value="2.53" />
+    <property name="seleniumMinorVersionNo" value="0" />
+    <property name="seleniumPermissionSet" value="0711" />
+
+    <target name="selenium.get.check">
+        <property name="outputValue" value="" override="yes" />
+        <if>
+            <available property="outputValue" file='${seleniumExecutable}' type='file' />
+            <then>
+                <echo msg="Selenium-standalon-server already exists" />
+            </then>
+            <else>
+                <phingcall target="selenium.get.download" />
+            </else>
+        </if>
+    </target>
+
+    <target name="selenium.get.download">
+        <echo message="attempting to download ${seleniumExecutable}" />
+        <echo message="wget ${seleniumTargetUrl}/${seleniumExecutable}" />
+        <exec command="wget ${seleniumTargetUrl}/${seleniumExecutable} ${seleniumPath}/${seleniumExecutable}" />
+        <echo message="chmod ${seleniumPermissionSet} ${seleniumExecutable}" />
+        <chmod file="${seleniumExecutable}" mode="${seleniumPermissionSet}" />
+    </target>
+</project>

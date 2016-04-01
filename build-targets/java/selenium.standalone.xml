@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project name="selenium.standalone" basedir="." description="This is a taskfile for composer tasks">
+    <import file="${phingBuildTargetPath}/java/selenium.get.xml" />
+    <property name="seleniumPID" value="" />
+
+    <target name="selenium.standalone.up" depends="selenium.get.check">
+        <property name="cmd" value="nohup java -jar ${seleniumPath}/${seleniumExecutable} > /dev/null 2>&amp;1 &amp;" />
+        <echo msg="${cmd}" />
+        <exec command="${cmd}" />
+    </target>
+
+    <target name="selenium.standalone.down" depends="selenium.get.check">
+        <property name="seleniumPID" value="" override="yes" />
+        <exec outputProperty="seleniumPID" command="ps axf | grep ${seleniumExecutable} | grep -v grep | awk '{print $1}'" />
+        <if>
+            <not>
+                <equals arg1="${seleniumPID}" arg2="" />
+            </not>
+            <then>
+                <exec command="kill ${seleniumPID}" />
+                <echo msg="Stopping Selenium" />
+            </then>
+            <else>
+                <echo message="Selenium is not running" />
+            </else>
+        </if>
+
+    </target>
+</project>
