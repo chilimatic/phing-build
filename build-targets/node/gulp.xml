@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <project name="node.gulp" default="node.gulp.trigger" basedir="." description="This is a taskfile for composer tasks">
     <property name="pathToGulpBinary" value="node_modules/.bin/gulp" />
+    <property name="passthru" value="false" />
 
     <target name="node.gulp.trigger">
-        <echo message="Gulp triggered" />
-        <exec command="${pathToGulpBinary}" />
+        <exec passthru="${passthru}" command="${pathToGulpBinary} ${gulpTarget}" />
     </target>
 
 </project>
