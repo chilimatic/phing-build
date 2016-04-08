@@ -8,7 +8,7 @@
         <if>
             <available property="outputValue" file='${executable}' type='file' />
             <then>
-                <phingcall target="php.phinx.migrate" />
+                <echo message="Phinx was found!" />
             </then>
             <else>
                 <echo message="Phinx has not been found can not start migration!" />
