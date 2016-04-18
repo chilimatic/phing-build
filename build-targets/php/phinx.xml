@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <project name="php.phinx" default="php.phinx.check" basedir="." description="This is a taskfile for composer tasks">
     <property name="path" value="bin" />
-    <property name="executable" value="phinx" />
+    <property name="phinxExecutable" value="phinx" />
 
     <target name="php.phinx.check">
         <property name="outputValue" value="" override="yes" />
         <if>
-            <available property="outputValue" file='${executable}' type='file' />
+            <available property="outputValue" file='${path}/${phinxExecutable}' type='file' />
             <then>
                 <echo message="Phinx was found!" />
             </then>
@@ -19,7 +19,8 @@
 
     <target name="php.phinx.execute" depends="php.phinx.check">
         <property name="command" value="" />
-        <exec command="${path}/${executable} ${command}" />
+        <echo message="${path}/${phinxExecutable} ${command}" />
+        <exec passthru="true" command="${path}/${phinxExecutable} ${command}" />
     </target>
 
     <target name="php.phinx.migrate">
