@@ -19,6 +19,12 @@
         </if>
     </target>
 
+    <!-- trigger node install -->
+      <target name="node.npm.script.compile">
+            <echo message="Running compile script" />
+            <exec command="npm run compile" />
+      </target>
+
             <!-- trigger node install -->
     <target name="node.npm.project.update">
         <echo message="NPM already installed your modules, trying to update" />
