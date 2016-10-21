@@ -20,9 +20,10 @@
     </target>
 
     <!-- trigger node install -->
-      <target name="node.npm.script.compile">
-            <echo message="Running compile script" />
-            <exec command="npm run compile" />
+      <target name="node.npm.script">
+            <echo message="Running compile script ${scriptName}" />
+            <property name="scripName" value="" />
+            <exec command="npm run ${scriptName}" />
       </target>
 
             <!-- trigger node install -->
