@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="curl" default="curl.request" basedir="." description="A curl request">
+    <!-- a request routine eg for emptying opcodecache using curl -->
+    <target name="curl.request">
+      <property name="url" value=""/>
+      <exec command="curl ${url}" outputProperty="outputValue" />
+      <echo message="${outputValue}" />
+    </target>
+</project>
