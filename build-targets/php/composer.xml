@@ -42,7 +42,8 @@
     <!-- composer update triggered-->
     <target name="php.composer.project.update">
         <echo message="composer update is triggered" />
-        <exec command="php composer.phar update" />
+        <!-- passthroug is not optional cause composer can cause hangs-->
+        <exec command="php composer.phar update" passthru="yes" />
     </target>
 
 
