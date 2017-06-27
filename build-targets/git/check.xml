@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="check" default="git.check" basedir="." description="This is the automatic build file for the social network.">
+<project name="check" default="git.check" basedir="." description="This is the automatic build file for git.">
     <!-- properties -->
     <property name="pathToGitDir" value=".git" />
 

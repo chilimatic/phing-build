@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="selenium.get" default="selenium.get.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="selenium.get" default="selenium.get.check" basedir="." description="This is a taskfile for selenium tasks">
     <import file="${phingBuildTargetPath}/curl/check.xml" />
 
     <property name="seleniumPath" value="." />

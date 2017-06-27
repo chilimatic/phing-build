@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="node.gulp" default="node.gulp.trigger" basedir="." description="This is a taskfile for composer tasks">
+<project name="node.gulp" default="node.gulp.trigger" basedir="." description="This is a taskfile for gulp tasks">
     <property name="pathToGulpBinary" value="node_modules/.bin/gulp" />
     <property name="passthru" value="false" />
 

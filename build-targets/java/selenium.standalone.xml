@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="selenium.standalone" basedir="." description="This is a taskfile for composer tasks">
+<project name="selenium.standalone" basedir="." description="This is a taskfile for selenium standalone tasks">
     <import file="${phingBuildTargetPath}/java/selenium.get.xml" />
     <property name="seleniumPID" value="" />
 

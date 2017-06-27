@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="curl" default="curl.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="curl" default="curl.check" basedir="." description="This is a taskfile for curl tasks">
     <!-- if composer is not downloaded we need to check if curl is available otherwise fail -->
     <target name="curl.check">
         <property name="outputValue" value="" override="yes" />

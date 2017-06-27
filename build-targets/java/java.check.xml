@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="java.check" default="java.exists" basedir="." description="This is a taskfile for composer tasks">
+<project name="java.check" default="java.exists" basedir="." description="This is a taskfile for java tasks">
     <property name="output" value="" />
     <property name="javaCommand" value="java -version"/>
 

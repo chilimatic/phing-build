@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="php.behat" default="php.behat.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="php.behat" default="php.behat.check" basedir="." description="This is a taskfile for behat tasks">
     <property name="behatExecutable" value="behat" />
 
     <target name="php.behat.check">

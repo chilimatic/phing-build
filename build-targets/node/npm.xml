@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="node.npm" default="node.npm.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="node.npm" default="node.npm.check" basedir="." description="This is a taskfile for npm tasks">
     <property name="pathToModules" value="node_modules" />
 
     <!-- check if node is available otherwise fail -->

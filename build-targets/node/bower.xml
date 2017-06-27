@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="node.bower" default="node.bower.check" basedir="." description="This is a taskfile for composer tasks">
+<project name="node.bower" default="node.bower.check" basedir="." description="This is a taskfile for bower tasks">
     <!-- todo think about dynamic mapping via task plugin -->
     <property name="pathToBowerBinary" value="node_modules/.bin/bower" />
     <property name="pathToVendor" value="public/vendor" />
