@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <project name="node.yarn" default="node.yarn.check" basedir="." description="This is the task file for yarn">
     <property name="pathToModules" value="node_modules" />
+    <property name="passthru" value="false" />
 
     <!-- check if node is available otherwise fail -->
     <target name="node.yarn.check">
@@ -23,23 +24,29 @@
     <target name="node.yarn.script">
         <echo message="Running compile script ${scriptName}" />
         <property name="scripName" value="" />
-        <exec command="yarn ${scriptName}" />
+        <exec command="yarn ${scriptName}" passthru="${passthru}" />
     </target>
 
     <!-- trigger node install -->
     <target name="node.yarn.project.upgrade">
         <echo message="yarn already installed your modules, trying to update" />
-        <exec command="yarn upgrade" />
+        <exec command="yarn upgrade" passthru="${passthru}" />
     </target>
 
     <!-- trigger npm update -->
     <target name="node.yarn.project.install">
-        <echo message="no node_modules found, execute yarn install" />
-        <exec command="yarn install" />
+        <echo message="installing node dependencies" />
+        <exec command="yarn install" passthru="${passthru}" />
     </target>
 
     <!-- install or update node modules -->
     <target name="node.yarn.install.routine">
+        <property name="outputValue" value="" override="yes" />
+        <phingcall target="node.yarn.project.install" />
+    </target>
+
+    <!-- install or update node modules -->
+    <target name="node.yarn.upgrade.routine">
         <property name="outputValue" value="" override="yes" />
         <if>
             <available property="outputValue" file='${pathToModules}' type='dir' />

@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <project name="node.grunt" default="node.grunt.trigger.default" basedir="." description="This is a taskfile for grunt tasks">
     <property name="pathToGruntBinary" value="node_modules/.bin/grunt" />
+    <property name="passthru" value="false" />
 
     <target name="node.grunt.trigger.default">
         <echo message="Gulp triggered" />
-        <exec command="${pathToGruntBinary}" />
+        <exec command="${pathToGruntBinary}" passthru="${passthru}" />
     </target>
 
 </project>

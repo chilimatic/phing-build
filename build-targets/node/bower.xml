@@ -3,6 +3,7 @@
     <!-- todo think about dynamic mapping via task plugin -->
     <property name="pathToBowerBinary" value="node_modules/.bin/bower" />
     <property name="pathToVendor" value="public/vendor" />
+    <property name="passthru" value="false" />
 
     <!-- check if node is available otherwise fail -->
     <target name="node.bower.check">
@@ -24,13 +25,13 @@
     <!-- trigger node install -->
     <target name="node.bower.project.update">
         <echo message="Bower is already installed trying to update" />
-        <exec command="${pathToBowerBinary} update" />
+        <exec command="${pathToBowerBinary} update" passthru="${passthru}" />
     </target>
 
     <!-- trigger npm update -->
     <target name="node.bower.project.install">
         <echo message="no bower target directory found, triggering bower install" />
-        <exec command="${pathToBowerBinary} install" />
+        <exec command="${pathToBowerBinary} install" passthru="${passthru}" />
     </target>
 
     <!-- install or update node modules -->

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <project name="php.behat" default="php.behat.check" basedir="." description="This is a taskfile for behat tasks">
     <property name="behatExecutable" value="behat" />
+    <property name="passthru" value="false" />
 
     <target name="php.behat.check">
         <property name="outputValue" value="" override="yes" />

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <project name="node.npm" default="node.npm.check" basedir="." description="This is a taskfile for npm tasks">
     <property name="pathToModules" value="node_modules" />
+    <property name="passthru" value="false" />
 
     <!-- check if node is available otherwise fail -->
     <target name="node.npm.check">
@@ -23,19 +24,19 @@
       <target name="node.npm.script">
             <echo message="Running compile script ${scriptName}" />
             <property name="scripName" value="" />
-            <exec command="npm run ${scriptName}" />
+            <exec command="npm run ${scriptName}" passthru="${passthru}" />
       </target>
 
             <!-- trigger node install -->
     <target name="node.npm.project.update">
         <echo message="NPM already installed your modules, trying to update" />
-        <exec command="npm update" />
+        <exec command="npm update" passthru="${passthru}"/>
     </target>
 
             <!-- trigger npm update -->
     <target name="node.npm.project.install">
         <echo message="no node_modules found, execute npm install" />
-        <exec command="npm install" />
+        <exec command="npm install" passthru="${passthru}"/>
     </target>
 
             <!-- install or update node modules -->

@@ -2,6 +2,7 @@
 <project name="php.phinx" default="php.phinx.check" basedir="." description="This is a taskfile for phinx tasks">
     <property name="path" value="bin" />
     <property name="phinxExecutable" value="phinx" />
+    <property name="passthru" value="false" />
 
     <target name="php.phinx.check">
         <property name="outputValue" value="" override="yes" />
@@ -20,7 +21,7 @@
     <target name="php.phinx.execute" depends="php.phinx.check">
         <property name="command" value="" />
         <echo message="${path}/${phinxExecutable} ${command}" />
-        <exec passthru="true" command="${path}/${phinxExecutable} ${command}" />
+        <exec passthru="${passthru}" command="${path}/${phinxExecutable} ${command}" />
     </target>
 
     <target name="php.phinx.migrate">
